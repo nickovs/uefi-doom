@@ -1,0 +1,63 @@
+[project]
+name = "uefi-doom-tools"
+version = "0.0.0"
+description = "Build, test and deployment tooling for the UEFI Doom port (not a distributable package)"
+authors = [{ name = "Nicko van Someren", email = "nicko@nicko.org" }]
+license = "GPL-2.0-only"
+requires-python = ">=3.10"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest==8.3.4",
+    "ruff==0.8.4",
+    "tox==4.23.2",
+    "qemu.qmp==0.0.3",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tools"]
+markers = ["qemu: boots QEMU + OVMF (slow)"]
+filterwarnings = ["ignore:There is no current event loop:DeprecationWarning:qemu.qmp"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+include = ["tools/**/*.py", "tests/**/*.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+envlist = lint, unit
+skipsdist = true
+
+[testenv]
+allowlist_externals = make
+deps =
+    pytest==8.3.4
+    qemu.qmp==0.0.3
+
+[testenv:lint]
+deps = ruff==0.8.4
+commands =
+    ruff check
+    ruff format --check
+    make -s format-check
+
+[testenv:unit]
+commands =
+    make -s unit
+    pytest -m "not qemu" {posargs}
+
+[testenv:qemu]
+commands =
+    make -s test-efi
+    pytest -m qemu {posargs}
+"""

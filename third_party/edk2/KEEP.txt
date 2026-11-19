@@ -1,0 +1,27 @@
+# EDK2 headers kept in addition to those our sources currently include
+# (needed by planned modules; see docs/backlog.md). Paths relative to MdePkg/Include.
+Uefi.h
+Guid/Acpi.h
+Guid/DxeServices.h
+Guid/FileInfo.h
+Guid/GlobalVariable.h
+Pi/PiDxeCis.h
+IndustryStandard/Acpi.h
+IndustryStandard/HighPrecisionEventTimerTable.h
+IndustryStandard/Usb.h
+IndustryStandard/Pci.h
+Protocol/DevicePath.h
+Protocol/GraphicsOutput.h
+Protocol/LoadedImage.h
+Protocol/PciIo.h
+Protocol/ShellParameters.h
+Protocol/SimpleFileSystem.h
+Protocol/SimplePointer.h
+Protocol/SimpleTextIn.h
+Protocol/SimpleTextInEx.h
+Protocol/SimpleTextOut.h
+Protocol/SimpleNetwork.h
+Protocol/UsbIo.h
+Protocol/Timer.h
+Protocol/DriverBinding.h
+Protocol/AbsolutePointer.h

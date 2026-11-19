@@ -1,0 +1,25 @@
+# Build output
+/build/
+
+# Game data: never commit WADs
+*.wad
+*.WAD
+/tests/data/
+
+# Python tooling
+__pycache__/
+*.py[cod]
+.venv/
+.tox/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# systest.py --raw dumps and logs
+/systest-out/
+
+# Editors / OS
+.DS_Store
+*.swp
+.vscode/
+.idea/

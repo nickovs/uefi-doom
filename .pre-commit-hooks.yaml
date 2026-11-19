@@ -1,0 +1,24 @@
+# Hooks for this repository (use with a .pre-commit-config.yaml of `repo: local`
+# or `repo: .`). The QEMU system tests are too slow for pre-commit; run
+# `uv run tox -e qemu` before tagging.
+- id: ruff
+  name: ruff lint
+  entry: uv run ruff check
+  language: system
+  types: [python]
+- id: ruff-format
+  name: ruff format check
+  entry: uv run ruff format --check
+  language: system
+  types: [python]
+- id: clang-format
+  name: clang-format check
+  entry: make -s format-check
+  language: system
+  pass_filenames: false
+  files: \.(c|h)$
+- id: unit-tests
+  name: host unit tests
+  entry: uv run tox -e unit
+  language: system
+  pass_filenames: false

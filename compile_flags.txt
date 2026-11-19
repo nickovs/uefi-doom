@@ -1,0 +1,16 @@
+-target
+x86_64-unknown-windows
+-std=c11
+-ffreestanding
+-fshort-wchar
+-nostdlibinc
+-isystem
+include/libc
+-Ithird_party/edk2/MdePkg/Include
+-Ithird_party/edk2/MdePkg/Include/X64
+-Ithird_party/printf/src
+-Iinclude
+-Itests/unit
+-DPROFILE_DEVLOOP=1
+-DDEBUGCON=0
+-DBUILD_ID="editor"
